@@ -1,0 +1,18 @@
+/* .columns-container .character-list {
+  border: 1px solid palevioletred;
+} */
+
+.character-list li {
+  list-style: none;
+  padding: 14px 16px;
+  background-color: aliceblue;
+}
+.list-container {
+  display: flex;
+  border: 1px solid palevioletred;
+}
+
+.columns-container {
+  display: flex;
+  flex-direction: row;
+}
