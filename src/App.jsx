@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import Board from "./components/Board";
@@ -66,6 +66,17 @@ function App() {
     }));
   };
 
+  const handleRemoveList = (listId) => {
+    // Create a copy of the state object
+    const updatedLists = { ...lists };
+
+    // Remove the list with the specified ID
+    delete updatedLists[listId];
+
+    // Update the state with the removed list
+    setLists(updatedLists);
+  };
+
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
@@ -130,12 +141,17 @@ function App() {
 
   return (
     <div className="app">
-      <div className="header">
-        <h1>Kanban Board</h1>
+      <div className="header text-center text-slate-50">
+        <h1 className=" text-4xl font-bold mb-3">Kanban Board</h1>
       </div>
-      <div className="board-container">
+      <div className="board-container min-h-screen min-w-full">
         <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Board cards={cards} lists={lists} addList={handleAddList} />
+          <Board
+            cards={cards}
+            lists={lists}
+            addList={handleAddList}
+            removeList={(listId) => handleRemoveList(listId)}
+          />
         </DragDropContext>
       </div>
     </div>
